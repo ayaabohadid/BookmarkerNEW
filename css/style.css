@@ -1,22 +1,19 @@
+body{
+  background-color: bisque;
+    font-family: "Righteous", sans-serif;
+}
 h1{
-    font-family: "Imbue", serif;
-    font-size: 90px;
-    font-weight: 900;
+    font-size: 50px;
+    font-family: "Pacifico", cursive;
 }
-p{
-    font-size: 30px;
-    font-weight: 500;
+h5{
+    font-size: 20px;
+    font-family: "Righteous", sans-serif;
 }
-.btn-lg{
-    --bs-btn-border-radius:0;
-    --bs-btn-padding-y: 1.5rem;
-    --bs-btn-padding-x: 4.5rem;
-    --bs-btn-font-size: 1rem;
-}
+.dash{
+    border-bottom: dotted 2px black;
 
-.btn-primary{
-    --bs-btn-hover-bg:rgb(142, 122, 240);
 }
-#demo,#demo-2{
-   background-color: rgb(223, 245, 245);
+.border-b{
+    border-bottom:2px black solid
 }

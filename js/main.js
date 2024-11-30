@@ -1,41 +1,117 @@
 
+var inputName=document.getElementById("inputtext")
+var inputurl=document.getElementById("inputUrl")
+
+// var urllist=[]
+if(localStorage.getItem("urlcontainer")){
+    urllist=JSON.parse(localStorage.getItem("urlcontainer"))
+    displayData()
+
+}else{
+    var urllist=[]
+}
 
 
-
-function randomQuote(){
-    var quote=[
-{quote:"“I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel.”",
-writter:"― Maya Angelou"},
-        {quote:"“Friendship ... is born at the moment when one man says to another 'What! You too? I thought that no one but myself . . .”",
-            writter:"― C.S. Lewis, The Four Loves"  
-        },
-        {quote:"“A friend is someone who knows all about you and still loves you.”",
-            writter:"― Elbert Hubbard"  
-        },
-        {quote:"“To live is the rarest thing in the world. Most people exist, that is all.”",
-            writter:"― Oscar Wilde"  
-        },
-        {quote:"“Live as if you were to die tomorrow. Learn as if you were to live forever.”",
-            writter:"― Mahatma Gandhi"  
-        },
-        {quote:"“We accept the love we think we deserve.”",
-            writter:"― Stephen Chbosky, The Perks of Being a Wallflower"  
-        },
-        {quote:"“It is better to be hated for what you are than to be loved for what you are not.”",
-            writter:"― Andre Gide, Autumn Leaves"  
-        },
-        {quote:"“Good friends, good books, and a sleepy conscience: this is the ideal life.”",
-            writter:"― Mark Twain"  
-        },
-        {quote:"“It does not do to dwell on dreams and forget to live.”",
-            writter:"― J.K. Rowling, Harry Potter and the Sorcerer's Stone"  
-        },
-        {quote:"“As he read, I fell in love the way you fall asleep: slowly, and then all at once.”",
-            writter:"― John Green, The Fault in Our Stars"  
+function addUrl(){
+    if( validName()&&validurl()){
+        var newurl={
+            name:inputName.value.trim(),
+            adress:inputurl.value.trim(),
         }
-    ]
-   var y=Math.floor(Math.random()*10)
-   
-        document.getElementById("demo").innerHTML=quote[y].quote;
-    document.getElementById("demo-2").innerHTML=quote[y].writter;
+        urllist.push(newurl)
+        displayData()
+        clearform()
+            console.log(urllist)
+
+    }
+
+}
+
+
+function clearform(){
+   inputName.value=""
+   inputurl.value=""
+}
+ function seturlcol(i){
+    return  `  <div class="row w-75 m-auto border-b bg-white text-center">
+                        <div class="col-3"><p>${i}</p></div>
+                        <div class="col-3">  <p>${urllist[i].name}</p></div>
+                        <div class="col-3"> <button type="button" class="btn btn-success"><a href="${urllist[i].adress}" target="_blank"><i class="fa-regular fa-eye pe-2"></i>Visit</a></button></div>
+                        <div class="col-3"> <button type="button" class="btn btn-danger" onclick="deletUrl(${i})" ><i class="fa-solid fa-trash pe-2"></i>Delete</button></div>
+                    </div>   `
+
+}
+
+function displayData(){
+    var cartona=``
+    for (let i = 0; i < urllist.length; i++) {
+       cartona+=seturlcol(i)   
+    }
+    document.getElementById("urlData").innerHTML=cartona
+}
+
+function deletUrl(index){
+    urllist.splice(index,1)
+    localStorage.setItem("urlcontainer",JSON.stringify(urllist))
+    displayData()
+
+}
+
+// function validName(){
+//     var name=inputName.value
+//     var regex=/^[A-Z][a-zA-Z]{5,50}$/ig
+//     if(regex.test(name)){
+//         inputName.classList.add("is-valid")
+//         inputName.classList.remove("is-invalid")
+//         document.getElementById("msg").classList.add("d-none")
+//         return true
+//     }else{
+//         inputName.classList.add("is-invalid")
+//         inputName.classList.remove("is-valid")
+//         document.getElementById("msg").classList.remove("d-none")
+//         return false
+//     }
+
+// }
+function validName() {
+    var name = inputName.value.trim();
+    var regex = /^[a-zA-Z]{5,50}$/i;
+    var isUnique = !urllist.some(url => url.name.toLowerCase() === name.toLowerCase());  
+
+    if (regex.test(name) && isUnique) {
+        inputName.classList.add("is-valid");
+        inputName.classList.remove("is-invalid");
+        document.getElementById("msg").classList.add("d-none");
+        return true;
+    } else {
+        inputName.classList.add("is-invalid");
+        inputName.classList.remove("is-valid");
+        document.getElementById("msg").classList.remove("d-none");
+
+        if (!isUnique) {
+            document.getElementById("msg").innerText = "Name already exists. Please use a unique name.";
+        } else {
+            document.getElementById("msg").classList.remove("d-none")
+        }
+
+        return false;
+    }
+}
+
+
+function validurl(){
+    var data=inputurl.value
+    var regex=/^(ht|f)tp(s?)\:\/\/[0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*(:(0-9)*)*(\/?)([a-zA-Z0-9\-\.\?\,\'\/\\\+&amp;%\$#_]*)?$/
+    if(regex.test(data)){
+        inputurl.classList.add("is-valid")
+        inputurl.classList.remove("is-invalid")
+        document.getElementById("urlmsg").classList.add("d-none")
+        return true
+    }else{
+        inputurl.classList.add("is-invalid")
+        inputurl.classList.remove("is-valid")
+        document.getElementById("urlmsg").classList.remove("d-none")
+        return false
+    }
+
 }
