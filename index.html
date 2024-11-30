@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Document</title>
+    <title>Bookmarker</title>
 </head>
 <body>
   
@@ -22,7 +22,7 @@
             <i class="fa-solid fa-bookmark fa-2xl ms-2" style="color: #aba849;"></i>
         </div>
         <div class="w-75 m-auto">
-            <label for="inputtext" class="form-label">Site Name</label>
+            <label for="inputtext" class="form-label"><i class="fa-solid fa-pen-to-square me-2"></i>Site Name</label>
             <input type="text" id="inputtext" class="form-control " aria-describedby="textHelpBlock" onkeyup="validName()">
             <div class="alert alert-danger d-none" role="alert" id="msg">
                 Must contain at least 5 characters
@@ -30,7 +30,7 @@
         </div>
         
         <div class=" w-75 m-auto my-4">
-            <label for="inputUrl" class="form-label ">Site URL</label>
+            <label for="inputUrl" class="form-label "><i class="fa-solid fa-link me-2"></i>Site URL</label>
             <input type="url" id="inputUrl" class="form-control" aria-describedby="urlHelpBlock"onkeyup="validurl()" >
             <div class="alert alert-danger d-none" role="alert" id="urlmsg">
                 Must start https Try again please
