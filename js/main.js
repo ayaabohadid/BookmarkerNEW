@@ -23,6 +23,8 @@ function addUrl(){
         clearform()
             console.log(urllist)
 
+    }else{
+        document.innerHTML=window.alert("enter siteName & url")
     }
 
 }
