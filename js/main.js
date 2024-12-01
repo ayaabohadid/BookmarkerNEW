@@ -35,7 +35,7 @@ function clearform(){
    inputurl.value=""
 }
  function seturlcol(i){
-    return  `  <div class="row w-75 m-auto border-b bg-white text-center">
+    return  `  <div class="row  border-b bg-white text-center">
                         <div class="col-3"><p>${i}</p></div>
                         <div class="col-3">  <p>${urllist[i].name}</p></div>
                         <div class="col-3"> <button type="button" class="btn btn-success"><a href="${urllist[i].adress}" target="_blank"><i class="fa-regular fa-eye pe-2"></i>Visit</a></button></div>
